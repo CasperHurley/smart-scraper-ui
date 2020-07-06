@@ -6,7 +6,8 @@ import {
   Row,
   Col,
   Input,
-  Typography
+  Typography,
+  Tag
 } from 'antd';
 
 const {Header, Content} = Layout;
@@ -16,13 +17,17 @@ const {Text, Title} = Typography
 function App() {
   const [scrapeURL, setScrapeURL] = useState();
   const [scrapeInProgress, toggleScrapeInProgress] = useState(false);
-  console.log(process.env)
+  const [errorWithScrape, setErrorWithScrape] = useState();
+  const [scrapedKeywords, setScrapedKeywords] = useState([]);
+
   useEffect(() => {
     toggleScrapeInProgress(true)
     callKeywordScrape(scrapeURL).then(response => {
       console.log(response);
+      setScrapedKeywords(response.data);
     }).catch(err => {
       console.log(err)
+      setErrorWithScrape(err);
     }).finally(() => {
       toggleScrapeInProgress(false);
     })
@@ -38,17 +43,35 @@ function App() {
         </Row>
       </Header> */}
       {/* <Layout> */}
-        <Content style={{height: "100%"}}>
-          <Row style={{height: "100%"}} justify="center">
-            <Col>
-              <Title level={1}>Keywords</Title>
-              <Title level={3}>Extract keywords from websites</Title>
+        <Content>
+          <Row gutter={[0, 32]} justify="center">
+            <Col span={20}>
+              <Title level={1}>Code Keywords</Title>
+              <Title level={3}>Extract code keywords from websites</Title>
               <Search 
+                autoFocus={true}
+                allowClear={true}
                 loading={scrapeInProgress}
                 size="large"
-                placeholder="Enter URL of website"
+                placeholder="Enter URL of website to scrape"
                 onSearch={value => setScrapeURL(value)}
               />
+            </Col>
+          </Row>
+          <Row gutter={[0, 32]} justify="center">
+            <Col span={18}>
+              {
+                scrapedKeywords.map((term, index) => {
+                  return (
+                    <Tag 
+                      key={index}
+                      closable={true}
+                      color="success"
+                      // onClose={}
+                    >{term}</Tag>
+                  )
+                })
+              }
             </Col>
           </Row>
         </Content>
