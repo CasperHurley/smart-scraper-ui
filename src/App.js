@@ -16,7 +16,7 @@ const {Text, Title} = Typography
 function App() {
   const [scrapeURL, setScrapeURL] = useState();
   const [scrapeInProgress, toggleScrapeInProgress] = useState(false);
-
+  console.log(process.env)
   useEffect(() => {
     toggleScrapeInProgress(true)
     callKeywordScrape(scrapeURL).then(response => {

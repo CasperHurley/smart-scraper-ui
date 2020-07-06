@@ -2,8 +2,8 @@ import axios from 'axios';
 
 function callKeywordScrape(scrapeURL) {
     return axios({
-        url: "https://node-keyword-extractor.herokuapp.com/",
-        method: "GET",
+        url: process.env.REACT_APP_NODE_SCRAPER_URL,
+        method: "POST",
         headers: {
             "Access-Control-Allow-Origin": "*"
         },
