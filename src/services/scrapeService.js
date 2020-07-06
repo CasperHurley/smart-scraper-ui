@@ -2,7 +2,7 @@ import axios from 'axios';
 
 function callKeywordScrape(scrapeURL) {
     return axios({
-        url: "http://localhost:3001/api/scrape",
+        url: "https://node-keyword-extractor.herokuapp.com/",
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*"
