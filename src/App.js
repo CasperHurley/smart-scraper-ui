@@ -15,7 +15,7 @@ const {Search} = Input;
 const {Text, Title} = Typography
 
 function App() {
-  const [scrapeURL, setScrapeURL] = useState();
+  const [scrapeURL, setScrapeURL] = useState("https://stackabuse.com/get-http-post-body-in-express-js/");
   const [scrapeInProgress, toggleScrapeInProgress] = useState(false);
   const [errorWithScrape, setErrorWithScrape] = useState();
   const [scrapedKeywords, setScrapedKeywords] = useState([]);
@@ -58,20 +58,22 @@ function App() {
               />
             </Col>
           </Row>
-          <Row gutter={[0, 32]} justify="center">
-            <Col span={18}>
-              {
-                scrapedKeywords.map((term, index) => {
-                  return (
-                    <Tag 
-                      key={index}
-                      closable={true}
-                      color="success"
-                      // onClose={}
-                    >{term}</Tag>
-                  )
-                })
-              }
+          <Row justify="center">
+            <Col span={20}>
+              <Row gutter={[16, 16]}>
+                {
+                  scrapedKeywords.map((term, index) => {
+                    return (
+                      <Col>
+                        <Tag 
+                          key={index}
+                          color="success"
+                        >{term}</Tag>
+                      </Col>
+                    )
+                  })
+                }
+              </Row>
             </Col>
           </Row>
         </Content>
