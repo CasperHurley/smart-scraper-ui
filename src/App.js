@@ -15,7 +15,7 @@ const {Search} = Input;
 const {Text, Title} = Typography
 
 function App() {
-  const [scrapeURL, setScrapeURL] = useState("https://stackabuse.com/get-http-post-body-in-express-js/");
+  const [scrapeURL, setScrapeURL] = useState();
   const [scrapeInProgress, toggleScrapeInProgress] = useState(false);
   const [errorWithScrape, setErrorWithScrape] = useState();
   const [scrapedKeywords, setScrapedKeywords] = useState([]);
